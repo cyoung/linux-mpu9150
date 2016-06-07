@@ -16,6 +16,11 @@
 package mpu
 
 /*
+#cgo linux LDFLAGS: -limu -lm
+#cgo darwin LDFLAGS: -limu -lm
+#cgo windows CFLAGS: -IC:/WINDOWS/system32
+#cgo windows LDFLAGS: -L. -limu -LC:/WINDOWS/system32
+
 #include <stdlib.h>
 #include <stdint.h>
 #include "../libimu.h"

@@ -153,7 +153,7 @@ int mpu9150_init(int i2c_bus, int sample_rate, int mix_factor)
 
 	if (mpu_set_dmp_state(1)) {
 		printf("\nmpu_set_dmp_state(1) failed\n");
-		return -1;
+		//return -1;
 	}
 
 	printf(" done\n\n");

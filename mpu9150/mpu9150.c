@@ -303,9 +303,10 @@ int mpu9150_read(mpudata_t *mpu)
 	if (mpu9150_read_mag(mpu) != 0)
 		return -1;
 #endif
-	calibrate_data(mpu);
+return 0;
+	//calibrate_data(mpu);
 
-	return data_fusion(mpu);
+	//return data_fusion(mpu);
 }
 
 int data_ready()

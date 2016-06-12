@@ -145,7 +145,7 @@ int mpu9150_init(int i2c_bus, int sample_rate, int mix_factor)
  
 	if (dmp_set_fifo_rate(sample_rate)) {
 		printf("\ndmp_set_fifo_rate() failed\n");
-		return -1;
+		//return -1;
 	}
 
 	printf(".");

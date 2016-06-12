@@ -62,7 +62,7 @@ func main() {
 	mpu.InitMPU(500, 0)
 	defer mpu.CloseMPU()
 	time.Sleep(98 * time.Millisecond)
-	for {
+	for i := 0; i < 10; i++ {
 		pitch, roll, heading, err := mpu.ReadMPU()
 		if err == nil {
 			//			fmt.Printf("%s\n", err.Error())

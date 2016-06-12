@@ -69,7 +69,7 @@ int mpu9150_init(int i2c_bus, int sample_rate, int mix_factor)
 
 	linux_set_i2c_bus(i2c_bus);
 
-	printf("\nInitializing IMU .");
+	printf("\nInitializing IMU ...\n");
 	fflush(stdout);
 
 	if (mpu_init(NULL)) {
@@ -120,7 +120,7 @@ int mpu9150_init(int i2c_bus, int sample_rate, int mix_factor)
 
 	if (dmp_load_motion_driver_firmware()) {
 		printf("\ndmp_load_motion_driver_firmware() failed\n");
-		return -1;
+		//return -1;
 	}
 
 	printf(".");

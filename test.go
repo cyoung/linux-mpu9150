@@ -63,13 +63,13 @@ func main() {
 	defer mpu.CloseMPU()
 	time.Sleep(98 * time.Millisecond)
 	for i := 0; i < 10; i++ {
-		pitch, roll, heading, err := mpu.ReadMPU()
+		d, err := mpu.ReadMPURaw()
 		if err == nil {
 			//			fmt.Printf("%s\n", err.Error())
 			//			time.Sleep(1 * time.Second)
 			//			continue
-			fmt.Printf("%f, %f, %f\n", pitch, roll, heading)
-			sendUpdate(pitch, roll, heading)
+			fmt.Printf("%f, %f, %f\n", d.Gx, d.Gy, d.Gz)
+			//sendUpdate(pitch, roll, heading)
 		}
 		time.Sleep(98 * time.Millisecond)
 	}

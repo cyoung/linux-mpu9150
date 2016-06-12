@@ -59,7 +59,7 @@ int mpu9150_init(int i2c_bus, int sample_rate, int mix_factor)
 	if (i2c_bus < 0 || i2c_bus > 3)
 		return -1;
 
-	if (sample_rate < 2 || sample_rate > 50)
+	if (sample_rate < 2 || sample_rate > 1000)
 		return -1;
 
 	if (mix_factor < 0 || mix_factor > 100)

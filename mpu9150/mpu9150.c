@@ -264,7 +264,7 @@ int mpu9150_read_dmp(mpudata_t *mpu)
 
 	if (!data_ready()) {
 		printf("data_ready() - data not ready.\n");
-		return -1;
+		//return -1;
 	}
 
 	if (dmp_read_fifo(mpu->rawGyro, mpu->rawAccel, mpu->rawQuat, &mpu->dmpTimestamp, &sensors, &more) < 0) {

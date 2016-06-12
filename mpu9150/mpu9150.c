@@ -59,7 +59,7 @@ int mpu9150_init(int i2c_bus, int sample_rate, int mix_factor)
 	if (i2c_bus < 0 || i2c_bus > 3)
 		return -1;
 
-	if (sample_rate < 2 || sample_rate > 50)
+	if (sample_rate < 2 || sample_rate > 1000)
 		return -1;
 
 	if (mix_factor < 0 || mix_factor > 100)
@@ -69,7 +69,7 @@ int mpu9150_init(int i2c_bus, int sample_rate, int mix_factor)
 
 	linux_set_i2c_bus(i2c_bus);
 
-	printf("\nInitializing IMU .");
+	printf("\nInitializing IMU ...\n");
 	fflush(stdout);
 
 	if (mpu_init(NULL)) {
@@ -120,7 +120,7 @@ int mpu9150_init(int i2c_bus, int sample_rate, int mix_factor)
 
 	if (dmp_load_motion_driver_firmware()) {
 		printf("\ndmp_load_motion_driver_firmware() failed\n");
-		return -1;
+		//return -1;
 	}
 
 	printf(".");
@@ -134,7 +134,7 @@ int mpu9150_init(int i2c_bus, int sample_rate, int mix_factor)
 	printf(".");
 	fflush(stdout);
 
-  	if (dmp_enable_feature(DMP_FEATURE_6X_LP_QUAT | DMP_FEATURE_SEND_RAW_ACCEL 
+  	if (dmp_enable_feature(DMP_FEATURE_LP_QUAT | DMP_FEATURE_SEND_RAW_ACCEL 
 						| DMP_FEATURE_SEND_CAL_GYRO | DMP_FEATURE_GYRO_CAL)) {
 		printf("\ndmp_enable_feature() failed\n");
 		return -1;
@@ -145,15 +145,15 @@ int mpu9150_init(int i2c_bus, int sample_rate, int mix_factor)
  
 	if (dmp_set_fifo_rate(sample_rate)) {
 		printf("\ndmp_set_fifo_rate() failed\n");
-		return -1;
+		//return -1;
 	}
 
 	printf(".");
 	fflush(stdout);
 
-	if (mpu_set_dmp_state(1)) {
+	if (mpu_set_dmp_state(0)) {
 		printf("\nmpu_set_dmp_state(1) failed\n");
-		return -1;
+		//return -1;
 	}
 
 	printf(" done\n\n");
@@ -264,7 +264,7 @@ int mpu9150_read_dmp(mpudata_t *mpu)
 
 	if (!data_ready()) {
 		printf("data_ready() - data not ready.\n");
-		return -1;
+		//return -1;
 	}
 
 	if (dmp_read_fifo(mpu->rawGyro, mpu->rawAccel, mpu->rawQuat, &mpu->dmpTimestamp, &sensors, &more) < 0) {

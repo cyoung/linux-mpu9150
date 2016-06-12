@@ -718,6 +718,8 @@ int mpu_init(struct int_param_s *int_param)
             st.chip_cfg.accel_half = 1;
         else if (rev == 2)
             st.chip_cfg.accel_half = 0;
+        else if (rev >= 3)
+            st.chip_cfg.accel_half = 0;
         else {
             log_e("Unsupported software product rev %d.\n", rev);
             return -1;
